@@ -31,3 +31,22 @@ body {
   width: 400px;
   height: 200px;
 }
+
+.tareas-lista-principal {
+  width: 600px;
+  min-height: 500px;
+  background-color: #d0d0d5;
+  padding: 25px;
+  margin: 10px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  border-radius: 25px;
+}
+
+h1 {
+  color: #1b1b32;
+  font-size: 25px;
+  font-family: Roboto, sans-serif;
+  margin: 20px 0;
+}
