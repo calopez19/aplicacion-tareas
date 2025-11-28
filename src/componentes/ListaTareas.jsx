@@ -9,6 +9,7 @@ export function ListaTareas(props) {
   const [tareas, setTareas] = useState([]);
 
   function agregarTarea(tarea) {
+    setTareas(tareas.push(tarea))
     console.log("tarea agregada");
     console.log(tarea);
   }
