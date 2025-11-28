@@ -3,7 +3,7 @@ import '../estilos/TareaFormulario.css'
 import { useState } from "react";
 import {v4 as uuidv4} from "uuid";
 
-export function Formulario(texto) {
+export function Formulario(props) {
 
     const [input, setInput] = useState("");
 
@@ -12,13 +12,12 @@ export function Formulario(texto) {
     }
     const manejarEnvio = e => {
         e.preventDefault();
-        console.log("envienado formualrio...");
         const tareaNueva = {
             id: uuidv4(),
             texto: input,
             completado: false
         }
-        console.log(tareaNueva);
+    props.onSubmit(tareaNueva);
     }
     return(
         <form action="" className="tarea-formulario" onSubmit={manejarEnvio}>

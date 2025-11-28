@@ -9,21 +9,43 @@ export function ListaTareas(props) {
   const [tareas, setTareas] = useState([]);
 
   function agregarTarea(tarea) {
-    setTareas(tareas.push(tarea))
-    console.log("tarea agregada");
-    console.log(tarea);
+    if (tarea.texto.trim()) {
+      tarea.texto = tarea.texto.trim();
+      const tareasActualizadas = [tarea, ...tareas];
+      setTareas(tareasActualizadas);
+    }
+  }
+
+  function eleminarTarea(id){
+    setTareas(tareas => tareas.filter(tarea => tarea.id !== id));
+    console.log("tarea eliminada");
+    console.log(tareas);
+  }
+
+  function completarTarea(id) {
+    let nuevas = tareas.map(tarea =>
+      {if (tarea.id ===id) {
+        tarea.completado = !tarea.completado;
+      }
+      return tarea;
+  })
+    setTareas(nuevas)
   }
 
   return (
     <>
-      <Formulario></Formulario>
+      <Formulario onSubmit={agregarTarea}></Formulario>
       <div className="tarea-lista-contenedor">
         {
-          tareas.map((tarea) => {
-            <Tarea 
+          tareas.map((tarea) => 
+            <Tarea
+            key={tarea.id}
+            id={tarea.id} 
             texto={tarea.texto} 
-            completado ={tarea.completado}/>
-          })
+            completada ={tarea.completado}
+            eliminarTarea = {eleminarTarea}
+            completarTarea ={completarTarea}/>
+          )
         }
       </div>
     </>
